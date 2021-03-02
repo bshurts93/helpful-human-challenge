@@ -1,0 +1,14 @@
+/* GOOGLE FONTS */
+
+/* NAV DRAWER */
+.ant-layout-sider {
+  background-color: #fff !important;
+}
+/* APP HEADER */
+.app-header__toggle {
+  padding-left: 20px;
+}
+
+.site-layout .app-header {
+  background: white;
+}
