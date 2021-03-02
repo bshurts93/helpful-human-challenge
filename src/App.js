@@ -22,12 +22,9 @@ class App extends React.Component {
   };
 
   toggleDrawer = () => {
-    console.log("toggle from header");
-
     this.setState({
       drawerOpen: !this.state.drawerOpen,
     });
-    console.log(this.state.drawerOpen);
   };
 
   render() {
@@ -37,6 +34,7 @@ class App extends React.Component {
           <NavDrawer
             collapseDrawer={this.toggleDrawer}
             collapsed={this.state.drawerOpen}
+            onItemClick={this.toggleDrawer}
           />
           <Layout className="site-layout">
             <Header style={{ padding: 0 }}>

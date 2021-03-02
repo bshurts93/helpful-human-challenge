@@ -20,7 +20,6 @@ class SingleColor extends React.Component {
     if (this.state.gradients.length > 0) {
       return (
         <div className="single-color__container">
-          <h1>{this.state.gradients[2]}</h1>
           <Row className="single-color__row" justify="space-around">
             <Col span={24}>
               <Card
