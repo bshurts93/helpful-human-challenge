@@ -12,3 +12,30 @@
 .site-layout .app-header {
   background: white;
 }
+
+/* SINGLE COLOR VIEW */
+.single-color__container {
+  padding: 50px;
+}
+
+.single-color__row {
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.color-card {
+  border-radius: 8px 8px 0 0;
+  padding: 0;
+}
+
+.color-text {
+  text-align: center;
+}
+
+.color-main__hue {
+  height: 400px;
+}
+
+.color-mini__hue {
+  height: 150px;
+}
