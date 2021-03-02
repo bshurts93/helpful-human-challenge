@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, Row, Col } from "antd";
 import { gradients } from "../constants/colors";
+import { getHexRange } from "../utils/colorCalculation";
+import { colorList } from "../constants/colors";
 
 class SingleColor extends React.Component {
   state = {
@@ -8,12 +10,20 @@ class SingleColor extends React.Component {
     gradients: [],
   };
 
+  generateHSL(hue) {
+    const colorValues = colorList[this.state.color];
+
+    getHexRange(colorValues.hueValue, colorValues.satValue);
+  }
+
   async componentDidMount() {
     let color = this.props.match.params.color.toLowerCase();
     console.log(color);
 
     await this.setState({ color: color, gradients: gradients[color] });
     console.log(this.state);
+
+    this.generateHSL(0);
   }
 
   render() {

@@ -8,6 +8,9 @@ function NavDrawer(props) {
     props.collapseDrawer();
   };
 
+  //   const colorItems = colorList.map((color) => color.title);
+  let colorItems = Object.keys(colorList);
+
   return (
     <Drawer
       title="Basic Drawer"
@@ -18,13 +21,15 @@ function NavDrawer(props) {
       bodyStyle={{ padding: 0 }}
     >
       <Menu defaultSelectedKeys={["1"]} mode="inline">
-        {colorList.map((color) => (
+        {colorItems.map((color) => (
           <Menu.Item
             key={color}
             icon={<PieChartOutlined />}
             onClick={collapseDrawer}
           >
-            <Link to={`/color/${color}`}>{color}</Link>
+            <Link to={`/color/${color}`}>
+              {color.charAt(0).toUpperCase() + color.slice(1)}
+            </Link>
           </Menu.Item>
         ))}
       </Menu>
