@@ -48,15 +48,20 @@ export const hslToHex = (h, s, l) => {
 };
 
 export const getHexRange = (hueValue, satValue) => {
-  let lightArr = [30, 40, 50, 50, 70];
+  let lightArr = [30, 40, 50, 60, 70];
 
   let hslColors = lightArr.map((lightness) => {
     return [hueValue, satValue, lightness];
   });
-  console.log(hslColors);
 
   hslColors.forEach((hsl) => {
     console.log(hsl);
     console.log(hslToHex(hsl[0], hsl[1], hsl[2]));
   });
+
+  let hexArr = hslColors.map((hsl) => {
+    return hslToHex(hsl[0], hsl[1], hsl[2]);
+  });
+
+  return hexArr;
 };
