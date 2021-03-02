@@ -16,7 +16,7 @@ function NavDrawer(props) {
       <Menu defaultSelectedKeys={["1"]} mode="inline">
         {colorList.map((color) => (
           <Menu.Item key={color} icon={<PieChartOutlined />}>
-            <Link to={`/${color}`}>{color}</Link>
+            <Link to={`/color/${color}`}>{color}</Link>
           </Menu.Item>
         ))}
       </Menu>

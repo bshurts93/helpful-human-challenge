@@ -32,7 +32,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" key={window.location.pathname}>
         <BrowserRouter>
           <NavDrawer
             collapseDrawer={this.toggleDrawer}
@@ -53,7 +53,7 @@ class App extends React.Component {
                 {/* <Route path="color/:id">
                   <SingleColor />
                 </Route> */}
-                <Route path="/:color" component={SingleColor} />
+                <Route path="/color/:color" component={SingleColor} />
               </Switch>
             </Content>
           </Layout>
