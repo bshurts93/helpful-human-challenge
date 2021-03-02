@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { colorList } from "../constants/colors";
 
 function NavDrawer(props) {
+  const collapseDrawer = () => {
+    props.collapseDrawer();
+  };
+
   return (
     <Drawer
       title="Basic Drawer"
@@ -15,8 +19,12 @@ function NavDrawer(props) {
     >
       <Menu defaultSelectedKeys={["1"]} mode="inline">
         {colorList.map((color) => (
-          <Menu.Item key={color} icon={<PieChartOutlined />}>
-            <Link to={`/${color}`}>{color}</Link>
+          <Menu.Item
+            key={color}
+            icon={<PieChartOutlined />}
+            onClick={collapseDrawer}
+          >
+            <Link to={`/color/${color}`}>{color}</Link>
           </Menu.Item>
         ))}
       </Menu>

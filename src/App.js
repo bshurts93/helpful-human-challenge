@@ -22,21 +22,19 @@ class App extends React.Component {
   };
 
   toggleDrawer = () => {
-    console.log("toggle from header");
-
     this.setState({
       drawerOpen: !this.state.drawerOpen,
     });
-    console.log(this.state.drawerOpen);
   };
 
   render() {
     return (
-      <div className="App">
+      <div className="App" key={window.location.pathname}>
         <BrowserRouter>
           <NavDrawer
             collapseDrawer={this.toggleDrawer}
             collapsed={this.state.drawerOpen}
+            onItemClick={this.toggleDrawer}
           />
           <Layout className="site-layout">
             <Header style={{ padding: 0 }}>
@@ -53,7 +51,7 @@ class App extends React.Component {
                 {/* <Route path="color/:id">
                   <SingleColor />
                 </Route> */}
-                <Route path="/:color" component={SingleColor} />
+                <Route path="/color/:color" component={SingleColor} />
               </Switch>
             </Content>
           </Layout>
