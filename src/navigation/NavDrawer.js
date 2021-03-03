@@ -21,9 +21,6 @@ function NavDrawer(props) {
     >
       <Menu defaultSelectedKeys={["1"]} mode="inline">
         <Menu.Item onClick={collapseDrawer}>
-          <Link to={"/list"}>List</Link>
-        </Menu.Item>
-        <Menu.Item onClick={collapseDrawer}>
           <Link to={"/color/random"}>Random</Link>
         </Menu.Item>
         {colorItems.map((color) => (

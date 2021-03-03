@@ -11,9 +11,9 @@ class ListView extends React.Component {
     currentPage: 1,
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.generateColorList();
-  }
+  };
 
   generateColorList = async () => {
     let list = [];
@@ -25,20 +25,13 @@ class ListView extends React.Component {
       total: list.length,
       pageItems: list.slice(0, 12),
     });
-    console.log(this.state);
   };
 
   paginate = (page, pageSize) => {
-    console.log("page", page);
     let start = (page - 1) * pageSize;
     let end = start + pageSize;
-    console.log("start", start);
-    console.log("end", end);
     let pageItems = this.state.colorList.slice(start, end);
-    console.log(pageItems);
-
     this.setState({ currentPage: page, pageItems: pageItems });
-    console.log(this.state);
   };
 
   render() {

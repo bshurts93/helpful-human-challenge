@@ -10,9 +10,9 @@ export default function ColorCard(props) {
 
   if (props.isMini) {
     return (
-      <div>
+      <div className="color-card">
         <div
-          className="color-card color-mini__hue"
+          className="color-mini__hue"
           style={{ background: `${props.color}` }}
           onClick={() => linkToSwatch(props.color)}
         />
@@ -22,9 +22,9 @@ export default function ColorCard(props) {
     );
   } else {
     return (
-      <div>
+      <div className="color-card">
         <div
-          className="color-card color-main__hue"
+          className="color-main__hue"
           style={{ background: `${props.color}` }}
         />
 

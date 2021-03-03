@@ -1,6 +1,8 @@
 import React from "react";
 import ColorCard from "../components/ColorCard";
-import { Row, Col } from "antd";
+import { Button, Row, Col } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { createSwatch, randomHex } from "../utils/colorCalculation";
 
 class SingleColor extends React.Component {
@@ -35,6 +37,10 @@ class SingleColor extends React.Component {
     if (this.state.swatch.length > 0) {
       return (
         <div className="single-color__container">
+          <Button type="link" icon={<ArrowLeftOutlined />}>
+            <Link to={"/list"}> Back to List</Link>
+          </Button>
+
           <Row className="single-color__row" justify="space-around">
             <Col span={24}>
               <ColorCard color={this.state.color} isMini={false} />
