@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Row, Col } from "antd";
 import { getHexRange } from "../utils/colorCalculation";
 import { colorList } from "../constants/colors";
 
@@ -8,22 +8,42 @@ class SingleColor extends React.Component {
     color: "",
     swatch: [],
   };
-
-  generateHSL() {
-    const colorValues = colorList[this.state.color];
-
-    return getHexRange(colorValues.hueValue, colorValues.satValue);
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: "",
+      swatch: [],
+    };
   }
 
-  async componentDidMount() {
+  async componentWillReceiveProps(nextProps) {
+    await nextProps;
+    this.initColors();
+  }
+
+  componentDidMount() {
+    this.initColors();
+  }
+
+  async initColors() {
     let color = await this.props.match.params.color.toLowerCase();
     await this.setState({ color: color });
+    const swatch = this.generateHSL();
+    this.setState({ swatch: swatch });
+  }
 
-    const test = this.generateHSL();
-    console.log(test);
-    this.setState({ swatch: test });
-
-    console.log(this.state);
+  generateHSL() {
+    let colorValues;
+    if (colorList[this.state.color]) {
+      colorValues = colorList[this.state.color];
+    } else {
+      colorValues = {
+        title: "RANDOM",
+        hueValue: Math.floor(Math.random() * 360),
+        satValue: Math.floor(Math.random() * 50) + 50,
+      };
+    }
+    return getHexRange(colorValues.hueValue, colorValues.satValue);
   }
 
   render() {
@@ -32,33 +52,25 @@ class SingleColor extends React.Component {
         <div className="single-color__container">
           <Row className="single-color__row" justify="space-around">
             <Col span={24}>
-              <Card
-                bordered
-                hoverable
-                bodyStyle={{ padding: 0, borderRadius: 10 }}
-              >
-                <div
-                  className="color-card color-main__hue"
-                  style={{ background: `${this.state.swatch[2]}` }}
-                />
+              <div
+                className="color-card color-main__hue"
+                style={{ background: `${this.state.swatch[2]}` }}
+              />
 
-                <div className="color-text">
-                  {this.state.swatch[2].toUpperCase()}
-                </div>
-              </Card>
+              <div className="color-text">
+                {this.state.swatch[2].toUpperCase()}
+              </div>
             </Col>
           </Row>
           <Row className="single-color__row" justify="space-between">
             {this.state.swatch.map((color) => (
               <Col style={{ width: "18%" }} key={color}>
-                <Card bordered hoverable bodyStyle={{ padding: 0 }}>
-                  <div
-                    className="color-card color-mini__hue"
-                    style={{ background: `${color}` }}
-                  />
+                <div
+                  className="color-card color-mini__hue"
+                  style={{ background: `${color}` }}
+                />
 
-                  <div className="color-text">{color.toUpperCase()}</div>
-                </Card>
+                <div className="color-text">{color.toUpperCase()}</div>
               </Col>
             ))}
           </Row>

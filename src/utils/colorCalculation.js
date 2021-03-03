@@ -54,11 +54,6 @@ export const getHexRange = (hueValue, satValue) => {
     return [hueValue, satValue, lightness];
   });
 
-  hslColors.forEach((hsl) => {
-    console.log(hsl);
-    console.log(hslToHex(hsl[0], hsl[1], hsl[2]));
-  });
-
   let hexArr = hslColors.map((hsl) => {
     return hslToHex(hsl[0], hsl[1], hsl[2]);
   });
