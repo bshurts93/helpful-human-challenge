@@ -1,38 +1,34 @@
 export const colorList = {
-  red: { title: "Red", hueValue: 0, satValue: 90 },
+  red: {
+    title: "Red",
+    hex: "#f5222d",
+  },
   orange: {
     title: "Orange",
-    hueValue: 30,
-    satValue: 90,
+    hex: "#fa8c16",
   },
   yellow: {
     title: "Yellow",
-    hueValue: 53,
-    satValue: 97,
+    hex: "#fadb14",
   },
   green: {
     title: "Green",
-    hueValue: 120,
-    satValue: 74,
+    hex: "#52c41a",
   },
   blue: {
     title: "Blue",
-    hueValue: 220,
-    satValue: 95,
+    hex: "#1890ff",
   },
   purple: {
     title: "Purple",
-    hueValue: 270,
-    satValue: 80,
+    hex: "#722ed1",
   },
   brown: {
     title: "Brown",
-    hueValue: 27,
-    satValue: 66,
+    hex: "#ad6800",
   },
   gray: {
     title: "Gray",
-    hueValue: 0,
-    satValue: 0,
+    hex: "#bfbfbf",
   },
 };

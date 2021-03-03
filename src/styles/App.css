@@ -14,7 +14,8 @@
 }
 
 /* SINGLE COLOR VIEW */
-.single-color__container {
+.single-color__container,
+.list-color__container {
   height: 100vh;
   padding: 50px;
 }

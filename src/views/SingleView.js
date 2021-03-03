@@ -1,20 +1,14 @@
 import React from "react";
 import { Row, Col } from "antd";
-import { getHexRange } from "../utils/colorCalculation";
+import { createSwatch, randomHex } from "../utils/colorCalculation";
 import { colorList } from "../constants/colors";
 
 class SingleColor extends React.Component {
   state = {
     color: "",
+    hex: "",
     swatch: [],
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: "",
-      swatch: [],
-    };
-  }
 
   async componentWillReceiveProps(nextProps) {
     await nextProps;
@@ -27,23 +21,15 @@ class SingleColor extends React.Component {
 
   async initColors() {
     let color = await this.props.match.params.color.toLowerCase();
-    await this.setState({ color: color });
-    const swatch = this.generateHSL();
-    this.setState({ swatch: swatch });
-  }
 
-  generateHSL() {
-    let colorValues;
-    if (colorList[this.state.color]) {
-      colorValues = colorList[this.state.color];
+    if (color !== "random") {
+      await this.setState({ color: color, hex: colorList[color].hex });
     } else {
-      colorValues = {
-        title: "RANDOM",
-        hueValue: Math.floor(Math.random() * 360),
-        satValue: Math.floor(Math.random() * 50) + 50,
-      };
+      await this.setState({ color: color, hex: randomHex() });
     }
-    return getHexRange(colorValues.hueValue, colorValues.satValue);
+
+    let swatch = createSwatch(this.state.hex);
+    this.setState({ swatch: swatch });
   }
 
   render() {

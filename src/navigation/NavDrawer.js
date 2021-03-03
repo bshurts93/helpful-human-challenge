@@ -1,5 +1,4 @@
 import { Drawer, Menu } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { colorList } from "../constants/colors";
 
