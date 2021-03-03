@@ -24,7 +24,7 @@ export const changeHexShade = (color, percent) => {
 };
 
 export const createSwatch = (color) => {
-  let percentages = [-40, -20, 0, 20, 40];
+  let percentages = [-60, -30, 0, 30, 60];
   let swatch = [];
   percentages.forEach((percentage) => {
     swatch.push(changeHexShade(color, percentage));

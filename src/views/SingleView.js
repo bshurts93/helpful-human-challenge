@@ -1,7 +1,7 @@
 import React from "react";
+import ColorCard from "../components/ColorCard";
 import { Row, Col } from "antd";
 import { createSwatch, randomHex } from "../utils/colorCalculation";
-import { colorList } from "../constants/colors";
 
 class SingleColor extends React.Component {
   state = {
@@ -37,25 +37,13 @@ class SingleColor extends React.Component {
         <div className="single-color__container">
           <Row className="single-color__row" justify="space-around">
             <Col span={24}>
-              <div
-                className="color-card color-main__hue"
-                style={{ background: `${this.state.swatch[2]}` }}
-              />
-
-              <div className="color-text">
-                {this.state.swatch[2].toUpperCase()}
-              </div>
+              <ColorCard color={this.state.color} isMini={false} />
             </Col>
           </Row>
           <Row className="single-color__row" justify="space-between">
             {this.state.swatch.map((color) => (
               <Col style={{ width: "18%" }} key={color}>
-                <div
-                  className="color-card color-mini__hue"
-                  style={{ background: `${color}` }}
-                />
-
-                <div className="color-text">{color.toUpperCase()}</div>
+                <ColorCard color={color} isMini={true} />
               </Col>
             ))}
           </Row>

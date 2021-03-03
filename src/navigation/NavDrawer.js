@@ -12,7 +12,7 @@ function NavDrawer(props) {
 
   return (
     <Drawer
-      title="Basic Drawer"
+      title="Color Swatch Menu"
       placement="left"
       closable
       onClose={props.collapseDrawer}
