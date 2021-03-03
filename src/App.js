@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./styles/App.css";
 
 // Views
@@ -29,7 +29,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App" key={window.location.pathname}>
+      <div className="App">
         <BrowserRouter>
           <NavDrawer
             collapseDrawer={this.toggleDrawer}
@@ -46,11 +46,8 @@ class App extends React.Component {
             <Content>
               <Switch>
                 <Route exact path="/">
-                  <SingleColor />
+                  <Redirect to="/color/random" />
                 </Route>
-                {/* <Route path="color/:id">
-                  <SingleColor />
-                </Route> */}
                 <Route path="/color/:color" component={SingleColor} />
               </Switch>
             </Content>

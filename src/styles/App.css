@@ -15,12 +15,12 @@
 
 /* SINGLE COLOR VIEW */
 .single-color__container {
+  height: 100vh;
   padding: 50px;
 }
 
 .single-color__row {
-  margin-bottom: 20px;
-  border-radius: 8px;
+  padding-bottom: 40px;
 }
 
 .color-card {
@@ -30,12 +30,14 @@
 
 .color-text {
   text-align: center;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
 }
 
 .color-main__hue {
-  height: 400px;
+  height: 45vh;
 }
 
 .color-mini__hue {
-  height: 150px;
+  height: 15vh;
 }
