@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
+import { useHistory } from "react-router-dom";
 import { randomHex } from "../utils/colorCalculation";
 
 class ListView extends React.Component {
@@ -16,8 +17,11 @@ class ListView extends React.Component {
     for (let i = 0; i < 12; i++) {
       list.push(randomHex());
     }
-    console.log(list);
     this.setState({ colorList: list });
+  }
+
+  linkToSwatch(color) {
+    this.props.history.push(`/color/${color.substring(1)}`);
   }
 
   render() {
@@ -29,6 +33,7 @@ class ListView extends React.Component {
               <div
                 className="color-card color-mini__hue"
                 style={{ background: `${color}` }}
+                onClick={() => this.linkToSwatch(color)}
               />
 
               <div className="color-text">{color.toUpperCase()}</div>

@@ -6,7 +6,6 @@ import { colorList } from "../constants/colors";
 class SingleColor extends React.Component {
   state = {
     color: "",
-    hex: "",
     swatch: [],
   };
 
@@ -23,12 +22,12 @@ class SingleColor extends React.Component {
     let color = await this.props.match.params.color.toLowerCase();
 
     if (color !== "random") {
-      await this.setState({ color: color, hex: colorList[color].hex });
+      await this.setState({ color: `#${color}` });
     } else {
-      await this.setState({ color: color, hex: randomHex() });
+      await this.setState({ color: randomHex() });
     }
 
-    let swatch = createSwatch(this.state.hex);
+    let swatch = createSwatch(this.state.color);
     this.setState({ swatch: swatch });
   }
 
