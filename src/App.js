@@ -12,18 +12,21 @@ import NavDrawer from "./navigation/NavDrawer";
 // Ant Design Imports
 import "antd/dist/antd.css";
 import { Layout } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-const { Header, Content } = Layout;
+import {
+  MenuOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from "@ant-design/icons";
+const { Sider, Header, Content } = Layout;
 
 class App extends React.Component {
   state = {
     collapsed: true,
-    drawerOpen: false,
   };
 
   toggleDrawer = () => {
     this.setState({
-      drawerOpen: !this.state.drawerOpen,
+      collapsed: !this.state.collapsed,
     });
   };
 
@@ -31,13 +34,32 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <NavDrawer
-            collapseDrawer={this.toggleDrawer}
-            collapsed={this.state.drawerOpen}
-            onItemClick={this.toggleDrawer}
-          />
           <Layout className="site-layout">
-            <Header style={{ padding: 0 }}>
+            <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+              <div className="logo" />
+              <NavDrawer onItemClick={this.toggleDrawer} />
+            </Sider>
+            <Layout className="site-layout">
+              <Header className="site-layout-background" style={{ padding: 0 }}>
+                {React.createElement(
+                  this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                  {
+                    className: "menu-trigger",
+                    onClick: this.toggleDrawer,
+                  }
+                )}
+              </Header>
+              <Content className="site-layout-background">
+                <Switch>
+                  <Route exact path="/list" component={ListView} />
+                  <Route exact path="/">
+                    <Redirect to="/color/random" />
+                  </Route>
+                  <Route path="/color/:color" component={SingleView} />
+                </Switch>{" "}
+              </Content>
+            </Layout>
+            {/* <Header style={{ padding: 0 }}>
               <MenuOutlined
                 onClick={this.toggleDrawer}
                 style={{ paddingLeft: 20, color: "#fff" }}
@@ -51,7 +73,7 @@ class App extends React.Component {
                 </Route>
                 <Route path="/color/:color" component={SingleView} />
               </Switch>
-            </Content>
+            </Content> */}
           </Layout>
         </BrowserRouter>
       </div>
