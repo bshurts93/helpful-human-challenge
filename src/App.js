@@ -3,27 +3,26 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./styles/App.css";
 
 // Views
-import SingleColor from "./views/SingleColor";
+import SingleView from "./views/SingleView";
+import ListView from "./views/ListView";
 
 // App Navigation
-import NavDrawer from "./navigation/NavDrawer";
+import NavDrawer from "./components/navigation/NavDrawer";
 
 // Ant Design Imports
-import { Layout } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-
 import "antd/dist/antd.css";
-const { Header, Content } = Layout;
+import { Layout } from "antd";
+import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
+const { Sider, Header, Content } = Layout;
 
 class App extends React.Component {
   state = {
     collapsed: true,
-    drawerOpen: false,
   };
 
   toggleDrawer = () => {
     this.setState({
-      drawerOpen: !this.state.drawerOpen,
+      collapsed: !this.state.collapsed,
     });
   };
 
@@ -31,26 +30,30 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <NavDrawer
-            collapseDrawer={this.toggleDrawer}
-            collapsed={this.state.drawerOpen}
-            onItemClick={this.toggleDrawer}
-          />
           <Layout className="site-layout">
-            <Header style={{ padding: 0 }}>
-              <MenuOutlined
-                onClick={this.toggleDrawer}
-                style={{ paddingLeft: 20, color: "#fff" }}
-              />
-            </Header>
-            <Content>
-              <Switch>
-                <Route exact path="/">
-                  <Redirect to="/color/random" />
-                </Route>
-                <Route path="/color/:color" component={SingleColor} />
-              </Switch>
-            </Content>
+            <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+              <NavDrawer collapsed={this.state.collapsed} />
+            </Sider>
+            <Layout className="site-layout">
+              <Header className="site-layout-background" style={{ padding: 0 }}>
+                {React.createElement(
+                  this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                  {
+                    className: "menu-trigger",
+                    onClick: this.toggleDrawer,
+                  }
+                )}
+              </Header>
+              <Content className="site-layout-background">
+                <Switch>
+                  <Route exact path="/list" component={ListView} />
+                  <Route exact path="/">
+                    <Redirect to="/color/random" />
+                  </Route>
+                  <Route path="/color/:color" component={SingleView} />
+                </Switch>{" "}
+              </Content>
+            </Layout>
           </Layout>
         </BrowserRouter>
       </div>
