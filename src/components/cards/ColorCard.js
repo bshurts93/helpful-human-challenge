@@ -1,5 +1,8 @@
 import React from "react";
+import { message } from "antd";
 import { useHistory } from "react-router-dom";
+import { CheckCircleOutlined } from "@ant-design/icons";
+
 import copy from "copy-to-clipboard";
 
 export default function ColorCard(props) {
@@ -12,6 +15,11 @@ export default function ColorCard(props) {
       console.log(color);
 
       copy(color);
+      message.success({
+        content: `Color copied to clipboard: ${color.toUpperCase()}`,
+        duration: 2,
+        icon: <CheckCircleOutlined style={{ color: color }} />,
+      });
     }
   };
 
