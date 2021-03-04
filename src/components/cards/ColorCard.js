@@ -1,11 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import copy from "copy-to-clipboard";
 
 export default function ColorCard(props) {
   let history = useHistory();
 
-  const linkToSwatch = (color) => {
-    history.push(`/color/${color.substring(1)}`);
+  const clickHandler = (color) => {
+    if (props.linkEnabled) {
+      history.push(`/color/${color.substring(1)}`);
+    } else {
+      console.log(color);
+
+      copy(color);
+    }
   };
 
   if (props.isMini) {
@@ -14,7 +21,7 @@ export default function ColorCard(props) {
         <div
           className="color-mini__hue"
           style={{ background: `${props.color}` }}
-          onClick={() => linkToSwatch(props.color)}
+          onClick={() => clickHandler(props.color)}
         />
 
         <div className="color-text">{props.color.toUpperCase()}</div>
@@ -26,6 +33,7 @@ export default function ColorCard(props) {
         <div
           className="color-main__hue"
           style={{ background: `${props.color}` }}
+          onClick={() => clickHandler(props.color)}
         />
 
         <div className="color-text">{props.color.toUpperCase()}</div>

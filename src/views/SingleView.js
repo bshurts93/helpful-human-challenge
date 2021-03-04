@@ -37,22 +37,30 @@ class SingleColor extends React.Component {
     if (this.state.swatch.length > 0) {
       return (
         <div className="single-color__container">
-          <Button type="link" icon={<ArrowLeftOutlined />}>
-            <Link to={"/list"}> Back to List</Link>
-          </Button>
-
           <Row className="single-color__row" justify="space-around">
             <Col span={24}>
-              <ColorCard color={this.state.color} isMini={false} />
+              <ColorCard
+                color={this.state.color}
+                isMini={false}
+                linkEnabled={false}
+              />
             </Col>
           </Row>
           <Row className="single-color__row" justify="space-between">
             {this.state.swatch.map((color) => (
               <Col style={{ width: "18%" }} key={color}>
-                <ColorCard color={color} isMini={true} />
+                <ColorCard color={color} isMini={true} linkEnabled={false} />
               </Col>
             ))}
           </Row>
+          <Button
+            className="button-back"
+            type="link"
+            block
+            icon={<ArrowLeftOutlined />}
+          >
+            <Link to={"/list"}> Back to List</Link>
+          </Button>
         </div>
       );
     } else {

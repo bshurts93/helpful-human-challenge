@@ -17,7 +17,7 @@ class ListView extends React.Component {
 
   generateColorList = async () => {
     let list = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 144; i++) {
       list.push(randomHex());
     }
     await this.setState({
@@ -41,17 +41,19 @@ class ListView extends React.Component {
           <Row className="list-color__row" justify="space-between">
             {this.state.pageItems.map((color) => (
               <Col span={6} style={{ padding: "20px" }} key={color}>
-                <ColorCard color={color} isMini={true} />
+                <ColorCard color={color} isMini={true} linkEnabled={true} />
               </Col>
             ))}
           </Row>
-          <Row>
-            <Pagination
-              defaultCurrent={1}
-              pageSize={12}
-              total={this.state.total}
-              onChange={this.paginate}
-            />
+          <Row justify="center">
+            <Col>
+              <Pagination
+                defaultCurrent={1}
+                pageSize={12}
+                total={this.state.total}
+                onChange={this.paginate}
+              />
+            </Col>
           </Row>
         </div>
       );
