@@ -48,7 +48,13 @@ class SingleColor extends React.Component {
           </Row>
           <Row className="single-color__row" justify="space-between">
             {this.state.swatch.map((color) => (
-              <Col style={{ width: "18%" }} key={color}>
+              <Col
+                xs={{ span: 24 }}
+                sm={{ span: 24 }}
+                md={{ span: 3 }}
+                lg={{ span: 3 }}
+                key={color}
+              >
                 <ColorCard color={color} isMini={true} linkEnabled={false} />
               </Col>
             ))}
