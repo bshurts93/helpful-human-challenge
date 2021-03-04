@@ -14,7 +14,11 @@ function NavDrawer(props) {
         {isCollapsed && <Image src={HHLogo} preview={false} />}
         {!isCollapsed && <p className="logo-text">HELPFUL HUMAN</p>}
       </div>
-      <Menu defaultSelectedKeys={["1"]} mode="inline">
+      <Menu
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        style={{ height: "100%" }}
+      >
         <Menu.Item icon={<QuestionCircleOutlined />}>
           <Link to={"/color/random"}>Random</Link>
         </Menu.Item>

@@ -1,11 +1,24 @@
 import React from "react";
+import { message } from "antd";
 import { useHistory } from "react-router-dom";
+import { CheckCircleOutlined } from "@ant-design/icons";
+
+import copy from "copy-to-clipboard";
 
 export default function ColorCard(props) {
   let history = useHistory();
 
-  const linkToSwatch = (color) => {
-    history.push(`/color/${color.substring(1)}`);
+  const clickHandler = (color) => {
+    if (props.linkEnabled) {
+      history.push(`/color/${color.substring(1)}`);
+    } else {
+      copy(color);
+      message.success({
+        content: `Color copied to clipboard: ${color.toUpperCase()}`,
+        duration: 2,
+        icon: <CheckCircleOutlined style={{ color: color }} />,
+      });
+    }
   };
 
   if (props.isMini) {
@@ -14,8 +27,8 @@ export default function ColorCard(props) {
         <div
           className="color-mini__hue"
           style={{ background: `${props.color}` }}
-          onClick={() => linkToSwatch(props.color)}
-        />
+          onClick={() => clickHandler(props.color)}
+        ></div>
 
         <div className="color-text">{props.color.toUpperCase()}</div>
       </div>
@@ -26,6 +39,7 @@ export default function ColorCard(props) {
         <div
           className="color-main__hue"
           style={{ background: `${props.color}` }}
+          onClick={() => clickHandler(props.color)}
         />
 
         <div className="color-text">{props.color.toUpperCase()}</div>
