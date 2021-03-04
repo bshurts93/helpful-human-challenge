@@ -1,5 +1,5 @@
 import React from "react";
-import ColorCard from "../components/ColorCard";
+import ColorCard from "../components/cards/ColorCard";
 import { Row, Col, Pagination } from "antd";
 import { randomHex } from "../utils/colorCalculation";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import ColorCard from "../components/ColorCard";
+import ColorCard from "../components/cards/ColorCard";
 import { Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
