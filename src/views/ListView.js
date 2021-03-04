@@ -40,7 +40,15 @@ class ListView extends React.Component {
         <div className="list-color__container">
           <Row className="list-color__row" justify="space-between">
             {this.state.pageItems.map((color) => (
-              <Col span={6} style={{ padding: "20px" }} key={color}>
+              <Col
+                xs={24}
+                sm={12}
+                md={8}
+                lg={6}
+                xl={4}
+                style={{ padding: "20px" }}
+                key={color}
+              >
                 <ColorCard color={color} isMini={true} linkEnabled={true} />
               </Col>
             ))}

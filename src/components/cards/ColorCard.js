@@ -12,8 +12,6 @@ export default function ColorCard(props) {
     if (props.linkEnabled) {
       history.push(`/color/${color.substring(1)}`);
     } else {
-      console.log(color);
-
       copy(color);
       message.success({
         content: `Color copied to clipboard: ${color.toUpperCase()}`,
@@ -30,7 +28,7 @@ export default function ColorCard(props) {
           className="color-mini__hue"
           style={{ background: `${props.color}` }}
           onClick={() => clickHandler(props.color)}
-        />
+        ></div>
 
         <div className="color-text">{props.color.toUpperCase()}</div>
       </div>
