@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./styles/App.css";
 
@@ -24,6 +25,15 @@ class App extends React.Component {
     this.setState({
       collapsed: !this.state.collapsed,
     });
+  };
+
+  componentDidMount = () => {
+    firebase
+      .database()
+      .ref("colorsList")
+      .on("value", (snapshot) => {
+        console.log(snapshot);
+      });
   };
 
   render() {
