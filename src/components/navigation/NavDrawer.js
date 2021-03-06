@@ -17,7 +17,7 @@ function NavDrawer(props) {
       <Menu
         defaultSelectedKeys={["1"]}
         mode="inline"
-        style={{ height: "100%" }}
+        style={{ height: "90vh" }}
       >
         <Menu.Item icon={<QuestionCircleOutlined />}>
           <Link to={"/color/random"}>Random</Link>

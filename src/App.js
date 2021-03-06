@@ -1,5 +1,4 @@
 import React from "react";
-import firebase from "firebase";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./styles/App.css";
 
@@ -27,19 +26,10 @@ class App extends React.Component {
     });
   };
 
-  componentDidMount = () => {
-    firebase
-      .database()
-      .ref("colorsList")
-      .on("value", (snapshot) => {
-        console.log(snapshot);
-      });
-  };
-
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename="/helpful-human-challenge">
           <Layout className="site-layout">
             <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
               <NavDrawer collapsed={this.state.collapsed} />
