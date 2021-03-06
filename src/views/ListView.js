@@ -2,6 +2,8 @@ import React from "react";
 import ColorCard from "../components/cards/ColorCard";
 import { Row, Col, Pagination } from "antd";
 import { randomHex } from "../utils/colorCalculation";
+import { firebase } from "../utils/firebase";
+const db = firebase.database();
 
 class ListView extends React.Component {
   state = {
@@ -12,7 +14,16 @@ class ListView extends React.Component {
   };
 
   componentDidMount = () => {
-    this.generateColorList();
+    const ref = db.ref("list");
+    ref.on("value", async (snap) => {
+      let colors = Object.values(snap.val());
+
+      await this.setState({
+        colorList: colors,
+        total: colors.length,
+        pageItems: colors.slice(0, 12),
+      });
+    });
   };
 
   generateColorList = async () => {
